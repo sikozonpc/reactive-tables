@@ -1,10 +1,12 @@
 import React from 'react'
 
-import { ExampleComponent } from 'reactive-tables'
+import { Table } from 'reactive-tables'
 import 'reactive-tables/dist/index.css'
 
 const App = () => {
-  return <ExampleComponent text="Create React Library Example 😄" />
+  return <Table>
+    HEy
+  </Table>
 }
 
 export default App
