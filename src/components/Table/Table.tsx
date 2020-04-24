@@ -1,5 +1,6 @@
 import * as React from 'react'
-import styles from '../index.module.css'
+import styles from '../../index.module.css'
+import { TableProvider } from '../../hooks/useReactiveTable'
 
 export interface TableProps extends React.HtmlHTMLAttributes<HTMLDivElement> {
   size?: 'compact' | 'normal'
@@ -7,7 +8,13 @@ export interface TableProps extends React.HtmlHTMLAttributes<HTMLDivElement> {
 }
 
 const Table: React.FC<TableProps> = ({ children }) => {
-  return <div className={styles.table}>{children}</div>
+  return (
+    <TableProvider>
+      <div className={styles.table}>
+        {children}
+      </div>
+    </TableProvider>
+  )
 }
 
 export default Table

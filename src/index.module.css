@@ -3,9 +3,7 @@ html {
   font-size: 14px;
 }
 
-html,
-body,
-#root {
+html, body, #root {
   width: 100%;
   height: 100%;
 }
@@ -18,9 +16,7 @@ body {
   font-weight: 400;
 }
 
-*,
-*:before,
-*:after {
+*, *:before, *:after {
   box-sizing: inherit;
 }
 
@@ -56,20 +52,40 @@ a:visited {
 }
 
 .th {
+  position: relative;
   flex: 0 0 auto;
   flex: 1 0 0;
   white-space: nowrap;
-  text-overflow: ellipsis;
   padding: 7px 5px;
-  overflow: hidden;
   transition: 0.3s ease;
   transition-property: width, min-width, padding, opacity;
   padding: 5px 5px;
   line-height: normal;
-  position: relative;
   border-right: 1px solid rgba(0, 0, 0, 0.05);
   transition: box-shadow 0.3s cubic-bezier(0.175, 0.885, 0.32, 1.275);
   box-shadow: inset 0 0 0 0 transparent;
+}
+
+.th>*:first-child {
+  text-align: center;
+  text-overflow: ellipsis;
+  overflow: hidden;
+}
+
+.resizableHead {
+  cursor: col-resize;
+  position: absolute;
+  display: inline-block;
+  top: 0;
+  bottom: 0;
+  width: 36px;
+  right: -18px;
+  z-index: 5;
+}
+
+.resizingColumn {
+  border-color: #b8e0fa;
+  border-width: 3px;
 }
 
 .tb-body {
@@ -77,6 +93,10 @@ a:visited {
   display: flex;
   flex-direction: column;
   overflow: auto;
+}
+
+.tb-body>*:nth-child(2n) {
+  background: rgba(0, 0, 0, 0.03);
 }
 
 .tr {
