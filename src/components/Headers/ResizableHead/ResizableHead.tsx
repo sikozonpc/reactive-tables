@@ -2,11 +2,7 @@ import * as React from 'react'
 import cx from 'classnames'
 
 import styles from '../../../index.module.css'
-
-interface ResizableHeadProps extends React.HTMLAttributes<HTMLDivElement> {
-  columnIndex: number,
-  onResize: (column: any, width: number) => void,
-}
+import { ResizableHeadProps } from '../../../types'
 
 const ResizableHead: React.FC<ResizableHeadProps> = ({ children, onResize, columnIndex, ...other }) => {
   const [isResizing, setIsResizing] = React.useState(false)

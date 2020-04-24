@@ -2,7 +2,6 @@ import * as React from 'react'
 
 import styles from '../../index.module.css'
 import useReactiveTable from '../../hooks/useReactiveTable'
-// eslint-disable-next-line no-unused-vars
 import { TableRowElement } from '../TableRow/TableRow'
 
 const TableBody: React.FC = ({ children }) => {

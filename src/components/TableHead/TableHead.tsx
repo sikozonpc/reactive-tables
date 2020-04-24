@@ -1,11 +1,7 @@
 import * as React from 'react'
-// import styles from '../../index.module.css'
 import useReactiveTable from '../../hooks/useReactiveTable'
 import ResizableHead from '../Headers/ResizableHead/ResizableHead'
-
-interface TableHeadProps extends React.HTMLAttributes<HTMLDivElement> {
-  columnIndex: number,
-}
+import { TableHeadProps } from '../../types'
 
 const TableHead: React.FC<TableHeadProps> = ({ children, ...other }) => {
   const { columnSizeHandler } = useReactiveTable()
@@ -20,7 +16,5 @@ const TableHead: React.FC<TableHeadProps> = ({ children, ...other }) => {
     </ResizableHead>
   )
 }
-
-export type TableHeadElement = React.ReactElement<TableHeadProps, typeof TableHead>
 
 export default TableHead

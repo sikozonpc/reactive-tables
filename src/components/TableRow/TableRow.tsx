@@ -1,11 +1,10 @@
 import * as React from 'react'
 
 import styles from '../../index.module.css'
-// eslint-disable-next-line no-unused-vars
-import { Table } from '../../hooks/useReactiveTable'
+import { Table } from '../../types'
 
 interface TableRowProps extends React.HTMLAttributes<HTMLDivElement> {
-  table: Table
+  table: Table;
 }
 
 const TableRow: React.FC<TableRowProps> = ({ children, table }) => {

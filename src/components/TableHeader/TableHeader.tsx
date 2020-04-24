@@ -2,8 +2,8 @@
 import * as React from 'react'
 
 import styles from '../../index.module.css'
-import { TableHeadElement } from '../TableHead/TableHead'
 import useReactiveTable from '../../hooks/useReactiveTable'
+import { TableHeadElement } from '../../types'
 
 const TableHeader: React.FC = ({ children }) => {
   const { generateColumns, table } = useReactiveTable()

@@ -1,48 +1,12 @@
 import React, { useContext, useState } from 'react'
+import { recalculateColumnsSize, calculateHeaderWidth } from '../utils/columnUtils'
+import { Table, Column, UseReactiveTable } from '../types'
 
-interface Column {
-  width: number
-}
+export const initialColumnSize = 200
+export const minColumnSize = 36
+export const defaultHeaderMinWidth = 650
 
-export interface Table {
-  columns: Column[]
-  headerMinWidth: number
-}
-
-interface UseReactiveTable {
-  table: Table
-  loadTable: (table: Table) => void,
-  columnSizeHandler: (columnIndex: number, width: number) => void
-  generateColumns: (count: number) => void
-}
-
-const initialColumnSize = 200
-const minColumnSize = 36
-const defaultHeaderMinWidth = 650
-
-export const calculateHeaderWidth = (columns: Column[]) => {
-  let width = 0
-  columns.forEach((col) => {
-    width += col.width
-  })
-
-  return width
-}
-
-export const recalculateColumnsSize = (columns: Column[], columnToChangeIndex: number, width: number) => {
-  return columns.map((_col, i) => {
-    if (i === columnToChangeIndex) {
-      return {
-        ...columns[i],
-        width: width <= minColumnSize ? minColumnSize : width
-      }
-    }
-    return {
-      ...columns[i]
-    }
-  })
-}
-
+// eslint-disable-next-line @typescript-eslint/ban-ts-ignore
 // @ts-ignore
 const TableContext = React.createContext()
 
