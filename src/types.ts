@@ -22,6 +22,7 @@ export interface ResizableHeadProps extends React.HTMLAttributes<HTMLDivElement>
 }
 
 export interface TableProps extends React.HtmlHTMLAttributes<HTMLDivElement> {
+  height?: number;
   size?: 'compact' | 'normal';
   hasResizeableColumns?: boolean;
 }
@@ -31,3 +32,7 @@ export interface TableHeadProps extends React.HTMLAttributes<HTMLDivElement> {
 }
 
 export type TableHeadElement = React.ReactElement<TableHeadProps, typeof TableHead>
+
+export interface TableRowProps extends React.HTMLAttributes<HTMLDivElement> {
+  table: Table;
+}

@@ -1,4 +1,3 @@
-/* eslint-disable no-unused-vars */
 import * as React from 'react'
 
 import styles from '../../index.module.css'
@@ -19,10 +18,7 @@ const TableHeader: React.FC = ({ children }) => {
 
   const tableHasComputedColumns = table.columns.length > 0
 
-  console.log(tableHasComputedColumns, table.columns)
   if (!tableHasComputedColumns) return null
-
-  console.log(table)
 
   return (
     <div className={styles['td-header']} style={computedStyles}>

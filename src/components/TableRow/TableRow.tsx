@@ -1,15 +1,11 @@
 import * as React from 'react'
 
 import styles from '../../index.module.css'
-import { Table } from '../../types'
+import { TableRowProps } from '../../types'
 
-interface TableRowProps extends React.HTMLAttributes<HTMLDivElement> {
-  table: Table;
-}
-
-const TableRow: React.FC<TableRowProps> = ({ children, table }) => {
+const TableRow: React.FC<TableRowProps> = ({ children, table, ...other }) => {
   return (
-    <div className={styles.tr}>
+    <div className={styles.tr} {...other}>
       {React.Children.map(children, (child: TableRowElement, i: number) =>
         React.cloneElement(child, {
           ...child.props,

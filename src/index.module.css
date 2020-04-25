@@ -108,6 +108,10 @@ a:visited {
   flex-flow: row;
 }
 
+.tr:hover {
+  background: rgba(0, 0, 0, 0.05);
+}
+
 .td {
   border-right: 1px solid rgba(0, 0, 0, 0.02);
   flex: 1 0 0;

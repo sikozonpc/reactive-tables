@@ -3,6 +3,7 @@ import cx from 'classnames'
 
 import styles from '../../../index.module.css'
 import { ResizableHeadProps } from '../../../types'
+import debounce from '../../../utils/debounce'
 
 const ResizableHead: React.FC<ResizableHeadProps> = ({ children, onResize, columnIndex, ...other }) => {
   const [isResizing, setIsResizing] = React.useState(false)
@@ -11,7 +12,7 @@ const ResizableHead: React.FC<ResizableHeadProps> = ({ children, onResize, colum
     const width = x - target.getBoundingClientRect().left
 
     if (width > 0) {
-      onResize(columnIndex, width)
+      debounce(onResize(columnIndex, width), 1000)
     }
   }
 
