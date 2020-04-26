@@ -33,6 +33,4 @@ export interface TableHeadProps extends React.HTMLAttributes<HTMLDivElement> {
 
 export type TableHeadElement = React.ReactElement<TableHeadProps, typeof TableHead>
 
-export interface TableRowProps extends React.HTMLAttributes<HTMLDivElement> {
-  table: Table;
-}
+export type TableRowProps = React.HTMLAttributes<HTMLDivElement>

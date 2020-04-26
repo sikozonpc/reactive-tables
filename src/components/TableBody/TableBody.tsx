@@ -20,8 +20,7 @@ const TableBody: React.FC = ({ children }) => {
       {React.Children.map(children, (child: TableRowElement, i: number) =>
         React.cloneElement(child, {
           ...child.props,
-          key: `${i}-td`,
-          table
+          key: `${i}-td`
         }))}
     </div>
   )

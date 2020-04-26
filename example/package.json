@@ -7,6 +7,7 @@
     "react": "link:../node_modules/react",
     "react-dom": "link:../node_modules/react-dom",
     "react-scripts": "link:../node_modules/react-scripts",
+    "react-window": "^1.8.5",
     "reactive-tables": "link:.."
   },
   "scripts": {
