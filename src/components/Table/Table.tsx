@@ -3,9 +3,10 @@ import styles from '../../index.module.css'
 import { TableProvider } from '../../hooks/useReactiveTable'
 import { TableProps } from '../../types'
 
-const Table: React.FC<TableProps> = ({ children, height }) => {
+const Table: React.FC<TableProps> = ({ children, height, width }) => {
   const computedStyles: React.CSSProperties = {
-    height: height || '100%'
+    height: height || '100%',
+    width: width ? `${width}px` : '100%'
   }
 
   return (
