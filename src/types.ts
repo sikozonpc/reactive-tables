@@ -6,7 +6,7 @@ export interface Column {
 
 export interface Table {
   columns: Column[];
-  headerMinWidth: number;
+  width: number;
 }
 
 export interface UseReactiveTable {
@@ -23,9 +23,14 @@ export interface ResizableHeadProps extends React.HTMLAttributes<HTMLDivElement>
 
 export interface TableProps extends React.HtmlHTMLAttributes<HTMLDivElement> {
   height?: number;
+  /** Maximum width the table can have, the content will fit automatically */
   width?: number;
+  /** Space and size of the data for each row */
   size?: 'compact' | 'normal';
-  hasResizeableColumns?: boolean;
+  /** Flag to tell if the collumns should be resizable  */
+  resizeableColumns?: boolean;
+  /** Should the table have horizontal scroll. (Note t hat if you have resizable columns they'll be limited by the table width) */
+  horizontalSlide?: boolean;
 }
 
 export interface TableHeadProps extends React.HTMLAttributes<HTMLDivElement> {
@@ -35,3 +40,9 @@ export interface TableHeadProps extends React.HTMLAttributes<HTMLDivElement> {
 export type TableHeadElement = React.ReactElement<TableHeadProps, typeof TableHead>
 
 export type TableRowProps = React.HTMLAttributes<HTMLDivElement>
+
+export interface TableProviderProps {
+  tableWidth: number;
+  resizeableColumns: TableProps['resizeableColumns'];
+  horizontalSlide: TableProps['horizontalSlide'];
+}

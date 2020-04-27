@@ -8,16 +8,15 @@ const TableHeader: React.FC = ({ children }) => {
   const { generateColumns, table } = useReactiveTable()
 
   React.useEffect(() => {
-    console.log('GENERATING COLUMNS')
+    console.log('GENERATING COLUMNS...')
     generateColumns(React.Children.count(children))
   }, [])
 
   const computedStyles: React.CSSProperties = {
-    minWidth: table.headerMinWidth
+    minWidth: table.width
   }
 
   const tableHasComputedColumns = table.columns.length > 0
-
   if (!tableHasComputedColumns) return null
 
   return (

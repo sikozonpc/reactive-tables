@@ -24,7 +24,7 @@ const App = () => {
     <div className='test'>
       <Table
         height={500}
-        width={1017}
+        width={500}
       >
         <TableHeader>
           <TableHead>ID</TableHead>

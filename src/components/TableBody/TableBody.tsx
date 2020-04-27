@@ -8,7 +8,7 @@ const TableBody: React.FC = ({ children }) => {
   const { table } = useReactiveTable()
 
   const computedStyles: React.CSSProperties = {
-    minWidth: table.headerMinWidth
+    minWidth: table.width
   }
 
   const tableHasComputedColumns = table.columns.length > 0

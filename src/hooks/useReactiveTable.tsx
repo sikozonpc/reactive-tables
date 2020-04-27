@@ -1,48 +1,56 @@
 import React, { useContext, useState } from 'react'
-import { recalculateColumnsSize, calculateHeaderWidth } from '../utils/columnUtils'
-import { Table, Column, UseReactiveTable } from '../types'
+import { recalculateColumnsSize, calculateHeaderWidth, calculateInitialColumnWidth, recalculateColumnsSizeWithFixedWidth } from '../utils/columnUtils'
+import { Table, Column, UseReactiveTable, TableProviderProps } from '../types'
 
-export const initialColumnSize = 200
-export const minColumnSize = 36
-export const defaultHeaderMinWidth = 650
-
-// eslint-disable-next-line @typescript-eslint/ban-ts-ignore
 // @ts-ignore
 const TableContext = React.createContext()
 
-export const TableProvider: React.FC = ({ children }) => {
+export const TableProvider: React.FC<TableProviderProps> = ({ children, tableWidth, resizeableColumns, horizontalSlide }) => {
   const [table, setTable] = useState<Table>({
     columns: [],
-    headerMinWidth: defaultHeaderMinWidth
+    width: tableWidth
   })
 
-  const columnSizeHandler = (columnIndex: number, width: number) => {
+  /** Column resize function handler */
+  const columnResizeHandler = (columnIndex: number, width: number) => {
+    if (!resizeableColumns) return
+
     const col = table.columns[columnIndex]
     if (!col) {
       throw new Error(`column with index of ${columnIndex} does not exist in table`)
     }
 
-    const recalculatedColumns = recalculateColumnsSize(table.columns, columnIndex, width)
+    const actionType = horizontalSlide ? 'infite-table-width' : 'fixed-table-width'
+
+    const resizeHandler = {
+      'fixed-table-width': recalculateColumnsSizeWithFixedWidth,
+      'infite-table-width': recalculateColumnsSize
+    }
+
+    const recalculatedColumns = resizeHandler[actionType](table, columnIndex, width)
 
     setTable((oldTable) => ({
       ...oldTable,
-      headerMinWidth: calculateHeaderWidth(recalculatedColumns),
+      width: calculateHeaderWidth(recalculatedColumns),
       columns: recalculatedColumns
     }))
   }
 
+  /** Generates the columns dynamic data based on the number of columns */
   const generateColumns = (count: number) => {
     const cols: Column[] = []
 
+    const columnWidth = calculateInitialColumnWidth(table.width, count)
+
     for (let i = 0; i < count; i++) {
       cols.push({
-        width: initialColumnSize
+        width: columnWidth
       })
     }
 
     setTable({
       ...table,
-      headerMinWidth: calculateHeaderWidth(cols),
+      width: calculateHeaderWidth(cols),
       columns: cols
     })
   }
@@ -52,7 +60,7 @@ export const TableProvider: React.FC = ({ children }) => {
   }
 
   return (
-    <TableContext.Provider value={{ table, columnSizeHandler, generateColumns, loadTable }}>
+    <TableContext.Provider value={{ table, columnSizeHandler: columnResizeHandler, generateColumns, loadTable }}>
       {children}
     </TableContext.Provider>
   )

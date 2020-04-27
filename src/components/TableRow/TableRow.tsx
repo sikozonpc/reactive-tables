@@ -21,7 +21,8 @@ const TableRow: React.FC<TableRowProps> = ({ children, ...other }) => {
           style: {
             flex: `${table.columns[i].width} 0 auto`,
             width: `${table.columns[i].width}px`,
-            maxWidth: `${table.columns[i].width}px`
+            maxWidth: `${table.columns[i].width}px`,
+            borderRight: i === table.columns.length - 1 ? 'hidden' : 'inherit'
           }
         }))}
     </div>
